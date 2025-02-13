@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/AbstractFactory.API.props" />
+</Project>

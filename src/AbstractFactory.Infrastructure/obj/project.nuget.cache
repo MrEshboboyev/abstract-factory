@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "qjivAcj7wVk=",
+  "success": true,
+  "projectFilePath": "/home/mreshboboyev/Patterns/Creational_Patterns/Abstract_Factory/src/AbstractFactory.Infrastructure/AbstractFactory.Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "/home/mreshboboyev/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
