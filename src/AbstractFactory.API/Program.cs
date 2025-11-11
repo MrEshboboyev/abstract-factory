@@ -1,18 +1,16 @@
 using AbstractFactory.Application.Documents;
 using AbstractFactory.Domain.Documents;
-using AbstractFactory.Infrastructure.Documents.PDF;
+using AbstractFactory.Infrastructure.Documents;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // Register services
-builder.Services.AddScoped<IDocumentFactory, ModernPdfFactory>(); // Default factory
+builder.Services.AddScoped<IDocumentFactory, UniversalDocumentFactory>(); // Default factory
 builder.Services.AddScoped<DocumentService>();
 
 var app = builder.Build();
@@ -27,28 +25,41 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-var summaries = new[]
+// Document generation endpoint
+app.MapPost("/generate-document", (DocumentRequest request, DocumentService documentService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    try
+    {
+        var result = documentService.GenerateThemedDocument(request.DocumentType, request.ThemeType, request.Content);
+        return Results.Ok(new { Document = result });
+    }
+    catch (NotSupportedException ex)
+    {
+        return Results.BadRequest(new { Error = ex.Message });
+    }
+    catch (ArgumentException ex)
+    {
+        return Results.BadRequest(new { Error = ex.Message });
+    }
 })
-.WithName("GetWeatherForecast");
+.WithName("GenerateDocument")
+.WithOpenApi();
+
+// Factory info endpoint
+app.MapGet("/factory-info", (DocumentService documentService) =>
+{
+    var info = documentService.GetFactoryInfo();
+    return Results.Ok(new { FactoryInfo = info });
+})
+.WithName("GetFactoryInfo")
+.WithOpenApi();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+/// <summary>
+/// Request model for document generation
+/// </summary>
+/// <param name="DocumentType">The type of document to generate</param>
+/// <param name="ThemeType">The type of theme to apply</param>
+/// <param name="Content">The content for the document</param>
+public record DocumentRequest(string DocumentType, string ThemeType, string Content);

@@ -3,21 +3,21 @@ using AbstractFactory.Domain.Documents;
 namespace AbstractFactory.Infrastructure.Documents.Themes;
 
 /// <summary>
-/// Classic theme implementation
+/// Minimalist theme implementation
 /// </summary>
-public class ClassicTheme : ITheme
+public class MinimalistTheme : ITheme
 {
     /// <summary>
     /// Gets the theme name
     /// </summary>
-    public string ThemeName => "Classic";
+    public string ThemeName => "Minimalist";
     
     /// <summary>
-    /// Applies the classic theme
+    /// Applies the minimalist theme
     /// </summary>
-    /// <returns>A string representation of the applied classic theme</returns>
+    /// <returns>A string representation of the applied minimalist theme</returns>
     public string ApplyTheme()
     {
-        return "Classic Theme Applied";
+        return "Minimalist Theme Applied";
     }
 }

@@ -1,17 +1,21 @@
 using AbstractFactory.Domain.Documents;
+using AbstractFactory.Infrastructure.Documents.Excel;
+using AbstractFactory.Infrastructure.Documents.PDF;
+using AbstractFactory.Infrastructure.Documents.PowerPoint;
 using AbstractFactory.Infrastructure.Documents.Themes;
+using AbstractFactory.Infrastructure.Documents.Word;
 
-namespace AbstractFactory.Infrastructure.Documents.Word;
+namespace AbstractFactory.Infrastructure.Documents;
 
 /// <summary>
-/// Classic Word factory implementation
+/// Universal document factory that can create all supported document types
 /// </summary>
-public class ClassicWordFactory : IDocumentFactory
+public class UniversalDocumentFactory : IDocumentFactory
 {
     /// <summary>
     /// Gets the factory name
     /// </summary>
-    public string FactoryName => "Classic Word Factory";
+    public string FactoryName => "Universal Document Factory";
     
     /// <summary>
     /// Creates a document of the specified type
@@ -22,7 +26,10 @@ public class ClassicWordFactory : IDocumentFactory
     {
         return documentType.ToLower() switch
         {
+            "pdf" => new PdfDocument(),
             "word" => new WordDocument(),
+            "excel" => new ExcelDocument(),
+            "powerpoint" => new PowerPointDocument(),
             _ => throw new NotSupportedException($"Document type '{documentType}' is not supported by {FactoryName}")
         };
     }
@@ -37,7 +44,9 @@ public class ClassicWordFactory : IDocumentFactory
         return themeType.ToLower() switch
         {
             "classic" => new ClassicTheme(),
+            "modern" => new ModernTheme(),
             "corporate" => new CorporateTheme(),
+            "minimalist" => new MinimalistTheme(),
             _ => throw new NotSupportedException($"Theme type '{themeType}' is not supported by {FactoryName}")
         };
     }
@@ -49,7 +58,8 @@ public class ClassicWordFactory : IDocumentFactory
     /// <returns>True if the factory can create this document type, false otherwise</returns>
     public bool CanCreateDocument(string documentType)
     {
-        return documentType.Equals("word", StringComparison.CurrentCultureIgnoreCase);
+        var supportedDocuments = new[] { "pdf", "word", "excel", "powerpoint" };
+        return supportedDocuments.Contains(documentType.ToLower());
     }
     
     /// <summary>
@@ -59,7 +69,7 @@ public class ClassicWordFactory : IDocumentFactory
     /// <returns>True if the factory can create this theme type, false otherwise</returns>
     public bool CanCreateTheme(string themeType)
     {
-        var supportedThemes = new[] { "classic", "corporate" };
+        var supportedThemes = new[] { "classic", "modern", "corporate", "minimalist" };
         return supportedThemes.Contains(themeType.ToLower());
     }
 }

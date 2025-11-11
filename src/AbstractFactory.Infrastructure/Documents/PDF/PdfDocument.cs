@@ -1,18 +1,22 @@
 namespace AbstractFactory.Infrastructure.Documents.PDF;
 
-using AbstractFactory.Domain.Documents;
-
-public class PdfDocument : IDocument
+/// <summary>
+/// PDF document implementation
+/// </summary>
+public class PdfDocument : BaseDocument
 {
-    private string _content = string.Empty;
+    /// <summary>
+    /// Gets the document type
+    /// </summary>
+    public override string DocumentType => "PDF";
     
-    public string GenerateDocument()
+    /// <summary>
+    /// Generates the PDF document content
+    /// </summary>
+    /// <returns>The generated PDF document content</returns>
+    public override string GenerateContent()
     {
-        return $"Generated PDF Document with content: {_content}";
+        var themeInfo = _appliedTheme != null ? $" with {_appliedTheme.ThemeName} theme" : "";
+        return $"Generated PDF Document{themeInfo}: {_content}";
     }
-
-    public void SetContent(string content)
-    {
-        _content = content;
-    }
-} 
+}
