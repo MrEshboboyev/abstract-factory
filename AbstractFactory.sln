@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B6851977-E327-4E02-8115-C8CE253BB448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactory.Core", "src\AbstractFactory.Core\AbstractFactory.Core.csproj", "{545C749A-8B36-4D34-828D-061F9930154A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactory.Domain", "src\AbstractFactory.Domain\AbstractFactory.Domain.csproj", "{D872D8F7-1C8A-4CB8-B411-1D6EA8867E7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactory.Application", "src\AbstractFactory.Application\AbstractFactory.Application.csproj", "{E4B26071-6B76-41BF-9D3F-D9B97BC85606}"
@@ -20,14 +18,7 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{545C749A-8B36-4D34-828D-061F9930154A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{545C749A-8B36-4D34-828D-061F9930154A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{545C749A-8B36-4D34-828D-061F9930154A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{545C749A-8B36-4D34-828D-061F9930154A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D872D8F7-1C8A-4CB8-B411-1D6EA8867E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D872D8F7-1C8A-4CB8-B411-1D6EA8867E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D872D8F7-1C8A-4CB8-B411-1D6EA8867E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,8 +36,10 @@ Global
 		{F7CFDD6C-C854-4DA9-8DCD-3BB9152F0D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7CFDD6C-C854-4DA9-8DCD-3BB9152F0D75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{545C749A-8B36-4D34-828D-061F9930154A} = {B6851977-E327-4E02-8115-C8CE253BB448}
 		{D872D8F7-1C8A-4CB8-B411-1D6EA8867E7C} = {B6851977-E327-4E02-8115-C8CE253BB448}
 		{E4B26071-6B76-41BF-9D3F-D9B97BC85606} = {B6851977-E327-4E02-8115-C8CE253BB448}
 		{33549A1B-CFE6-49FE-AC4B-50A51BB6E2BA} = {B6851977-E327-4E02-8115-C8CE253BB448}

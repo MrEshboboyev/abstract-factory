@@ -1,0 +1,55 @@
+﻿# Ignore IDE-specific files and settings
+.idea/
+.vs/
+*.user
+*.suo
+*.sln.DotSettings.user
+
+# Ignore build artifacts and generated files
+**/bin/
+**/obj/
+*.dll
+*.exe
+*.pdb
+*.mdb
+*.orig
+
+# Ignore temporary and cache files
+*.log
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+
+# Ignore NuGet packages
+*.nupkg
+packages/
+**/project.lock.json
+**/packages.lock.json
+artifacts/
+
+# Ignore environment secrets and local settings
+.env
+.env.local
+.env.*.local
+secrets.json
+appsettings.Local.json
+appsettings.*.Local.json
+
+# Ignore ReSharper and other IDE cache folders
+_ReSharper*/
+*.[Rr]e[Ss]harper
+_ReSharper.Caches/
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore macOS and Linux system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
